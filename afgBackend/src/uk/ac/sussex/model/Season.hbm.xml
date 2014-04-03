@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.Season" table="season">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<property name="name" column="name" type="java.lang.String"/>
+ 		<many-to-one name="next" column="next" class="uk.ac.sussex.model.Season" />
+ 		<property name="rainfall" column="rainfall" type="java.lang.Double" />
+ 		<property name="tempMax" column="tempmax" type="java.lang.Double" />
+ 		<property name="tempMin" column="tempmin" type="java.lang.Double" />
+ 		<property name="displayOrder" column="displayOrder" type="java.lang.Integer" />
+	</class>
+</hibernate-mapping>

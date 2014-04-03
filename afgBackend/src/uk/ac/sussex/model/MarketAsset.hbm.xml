@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.MarketAsset" table="market_assets">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+ 		<property name="amount" column="amount" type="java.lang.Double" />
+ 		<property name="buyPrice" column="buy_price" type="java.lang.Double" />
+ 		<property name="sellPrice" column="sell_price" type="java.lang.Double" />
+ 		<many-to-one name="game" column="game" class="uk.ac.sussex.model.game.Game" />
+ 		<many-to-one name="asset" column="asset" class="uk.ac.sussex.model.Asset" />
+	</class>
+</hibernate-mapping>

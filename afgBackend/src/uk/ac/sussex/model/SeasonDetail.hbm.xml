@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.SeasonDetail" table="season_detail">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+ 		<many-to-one name="game" column="game" class="uk.ac.sussex.model.game.Game" />
+ 		<property name="season" column="season" type="java.lang.String" />
+ 		<property name="gameStage" column="stage" type="java.lang.String" />
+ 		<property name="weather" column="weather" type="java.lang.String" />
+ 		<many-to-one name="previousSD" column="previous" class="uk.ac.sussex.model.SeasonDetail" />
+ 		<property name="gameYear" column="game_year" type="java.lang.Integer" />
+	</class>
+	
+	<class name="uk.ac.sussex.model.SeasonHearthAsset" table="season_hearth_assets">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+ 		<many-to-one name="season" column="season_detail" class="uk.ac.sussex.model.SeasonDetail" />
+ 		<many-to-one name="hearth" column="hearth" class="uk.ac.sussex.model.Hearth" />
+ 		<many-to-one name="asset" column="asset" class="uk.ac.sussex.model.Asset" />
+ 		<property name="amount" column="amount" type="java.lang.Double" />
+	</class>
+	
+	<class name="uk.ac.sussex.model.SeasonHearthStatus" table="season_hearth_status">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+ 		<many-to-one name="season" column="season_detail" class="uk.ac.sussex.model.SeasonDetail" />
+ 		<many-to-one name="hearth" column="hearth" class="uk.ac.sussex.model.Hearth" />
+ 		<property name="numFields" column="num_fields" type="java.lang.Integer" />
+ 		<property name="totalFamily" column="total_family" type="java.lang.Integer" />
+ 		<property name="livingFamily" column="living_family" type="java.lang.Integer" />
+ 		<property name="deadFamily" column="dead_family" type="java.lang.Integer" />
+ 		<property name="totalAdults" column="total_adults" type="java.lang.Integer" />
+ 		<property name="numPCs" column="num_pcs" type="java.lang.Integer" />
+	</class>
+	
+</hibernate-mapping>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.AssetOwner" table="asset_owners">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+ 		<property name="amount" column="amount" type="java.lang.Double" />
+ 		<many-to-one name="hearth" column="hearth" class="uk.ac.sussex.model.Hearth" />
+ 		<many-to-one name="owner" column="player_char" class="uk.ac.sussex.model.PlayerChar" />
+ 		<many-to-one name="asset" column="asset" class="uk.ac.sussex.model.Asset" />
+	</class>
+</hibernate-mapping>

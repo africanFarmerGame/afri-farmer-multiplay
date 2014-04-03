@@ -1,0 +1,1 @@
+﻿package uk.ac.sussex.controller {	import org.puremvc.as3.multicore.patterns.command.*;	public class StartupCommand  extends MacroCommand {		override protected function initializeMacroCommand():void {			addSubCommand( ModelPrepCommand );			addSubCommand( ViewPrepCommand);			addSubCommand( LoginStatePrepCommand );		}	}	}

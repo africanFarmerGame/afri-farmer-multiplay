@@ -1,0 +1,1 @@
+﻿package uk.ac.sussex.states {		public interface IGameState {		// Interface methods:		function displayState():void;		function cleanUpState():void;		function getName():String;		function refresh():void;	}	}

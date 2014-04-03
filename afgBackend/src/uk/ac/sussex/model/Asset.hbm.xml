@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.Asset" table="assets">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<discriminator column="discriminator" type="string"/>
+		<property name="name" column="name" type="java.lang.String"/>
+		<property name="measurement" column="measurement" type="java.lang.String" />
+		<property name="edible" column="edible" type="java.lang.Integer" />
+		<property name="type" column="type" type="java.lang.String" />
+		<property name="subtype" column="subtype" type="java.lang.String" />
+		<property name="guideBuyPrice" column="guide_buy_price" type="java.lang.Double" />
+		<property name="guideSellPrice" column="guide_sell_price" type="java.lang.Double" />
+		<property name="notes" column="notes" type="java.lang.String" />
+		<property name="initialStock" column="initial_stock" type="java.lang.Double" />
+		<property name="reclaimOrder" column="reclaim_order" type="java.lang.Integer" />
+		
+		<subclass name="uk.ac.sussex.model.AssetGeneral" discriminator-value="ASSET" />
+		<subclass name="uk.ac.sussex.model.AssetLand" discriminator-value="ASSET_LAND" />
+		<subclass name="uk.ac.sussex.model.AssetCrop" discriminator-value="ASSET_CROP">
+			<join table="assets_crop">
+				<key column="asset" />
+				<property name="EPYield" column="ep_yield" type="java.lang.Integer" />
+				<property name="LPYield" column="lp_yield" type="java.lang.Integer" />
+				<many-to-one name="outputAsset" column="outputAsset" class="uk.ac.sussex.model.Asset" />
+				<property name="maturity" column="maturity" type="java.lang.Integer" />
+				<property name="weedLoss" column="weed_loss" type="java.lang.Integer" />
+			</join>
+		</subclass>
+		<subclass name="uk.ac.sussex.model.AssetFood" discriminator-value="ASSET_FOOD">
+			<join table="assets_food">
+				<key column="asset" />
+				<property name="protein" column="protein" type="java.lang.Integer" />
+				<property name="nutrients" column="nutrients" type="java.lang.Integer" />
+				<property name="carbs" column="carbs" type="java.lang.Integer" />
+				<property name="EPYield" column="ep_yield" type="java.lang.Integer" />
+				<property name="LPYield" column="lp_yield" type="java.lang.Integer" />
+				<many-to-one name="outputAsset" column="outputAsset" class="uk.ac.sussex.model.Asset" />
+				<property name="maturity" column="maturity" type="java.lang.Integer" />
+				<property name="weedLoss" column="weed_loss" type="java.lang.Integer" />
+			</join>
+		</subclass>
+	</class>
+	<class name="uk.ac.sussex.model.FertiliserCropEffect" table="fertiliser_crop_effect">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<many-to-one name="fertiliser" column="fertiliser_id" class="uk.ac.sussex.model.Asset" />
+		<many-to-one name="crop" column="crop_id" class="uk.ac.sussex.model.Asset" />
+		<property name="epYield" column="ep_yield" type="java.lang.Integer" />
+		<property name="lpYield" column="lp_yield" type="java.lang.Integer" />
+	</class>
+</hibernate-mapping>

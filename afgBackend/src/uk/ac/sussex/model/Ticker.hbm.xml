@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.Ticker" table="ticker">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<many-to-one name="sender" column="sender" class="uk.ac.sussex.model.PlayerChar"/>
+		<many-to-one name="seasonDetail" column="season_detail" class="uk.ac.sussex.model.SeasonDetail" />
+		<property name="message" column="message" type="java.lang.String" />
+ 		<property name="duration" column="duration" type="java.lang.Double" />
+ 		<property name="active" column="active" type="java.lang.Integer" />
+ 		<many-to-one name="game" column="game" class="uk.ac.sussex.model.game.Game" />
+ 		<property name="timestamp" column="timestamp" type="java.lang.Long" />
+		
+	</class>
+</hibernate-mapping>

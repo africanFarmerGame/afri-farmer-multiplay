@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.CropHazard" table="crop_hazard">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<property name="name" column="name" type="java.lang.String"/>
+		<property name="notes" column="notes" type="java.lang.String"/>
+		<property name="probability" column="probability" type="java.lang.Integer"/>
+	</class>
+	<class name="uk.ac.sussex.model.CropHazardEffect" table="crop_hazard_effect">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<many-to-one name="cropHazard" column="hazard" class="uk.ac.sussex.model.CropHazard" />
+		<many-to-one name="crop" column="crop" class="uk.ac.sussex.model.Asset" />		
+		<property name="planting" column="planting" type="java.lang.Integer"/>
+		<property name="cropAge" column="crop_age" type="java.lang.Integer"/>
+		<property name="reduction" column="reduction" type="java.lang.Integer"/>
+		<property name="mitigatedRed" column="mitigated" type="java.lang.Integer"/>
+	</class>
+	<class name="uk.ac.sussex.model.FieldHazardHistory" table="field_hazard_history">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<many-to-one name="field" column="field" class="uk.ac.sussex.model.Field" />
+		<many-to-one name="cropHazardEffect" column="hazard_effect" class="uk.ac.sussex.model.CropHazardEffect" />		
+		<property name="mitigated" column="mitigated" type="java.lang.Integer"/>
+		<many-to-one name="seasonDetail" column="season_detail" class="uk.ac.sussex.model.SeasonDetail" />
+	</class>
+</hibernate-mapping>

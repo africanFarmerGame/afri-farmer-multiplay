@@ -1,0 +1,1 @@
+﻿package uk.ac.sussex.controller {		import org.puremvc.as3.multicore.interfaces.*;	import org.puremvc.as3.multicore.patterns.command.*;		import uk.ac.sussex.model.*;		public class ModelPrepCommand extends SimpleCommand{		override public function execute (note: INotification ): void {			facade.registerProxy(new ServerProxy());		}	}	}

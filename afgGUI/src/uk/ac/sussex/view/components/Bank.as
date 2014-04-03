@@ -1,0 +1,1 @@
+﻿package uk.ac.sussex.view.components {		import flash.display.MovieClip;			public class Bank extends MovieClip {						public function Bank() {			// constructor code		}	}	}

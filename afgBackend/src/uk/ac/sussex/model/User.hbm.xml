@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.Player" table="user">
+		<id name="loginName" column="username" type="java.lang.String" />
+		<property name="loginPassword" column="password" type="java.lang.String"/>
+ 		<set name="allCharacters" cascade="all" inverse="true">
+        	<key column="user" />
+        	<one-to-many class="uk.ac.sussex.model.PlayerChar" />
+        </set>
+	</class>
+</hibernate-mapping>

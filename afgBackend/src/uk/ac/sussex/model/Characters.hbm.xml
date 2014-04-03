@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.AllChars" table="character_all">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<property name="name" column="givenname" type="java.lang.String"/>
+		<property name="familyName" column="familyname" type="java.lang.String"/>
+		<many-to-one name="role" class="uk.ac.sussex.model.Role" />
+		<property name="alive" column="alive" type="java.lang.Integer" />
+		<property name="diet" column="diet" type="java.lang.String" />
+		<property name="avatarBody" column = "avatarBody" type="java.lang.Integer" />
+ 		<joined-subclass name="uk.ac.sussex.model.NPC" table="character_np">
+			<key column="allCharId" />
+			<property name="age" column="age" type="java.lang.Integer" />
+			<property name="school" column="school" type="java.lang.Integer" />
+ 			<many-to-one name="parent" column="parent" class="uk.ac.sussex.model.AllChars" />
+ 			<many-to-one name="hearth" column="hearth" class="uk.ac.sussex.model.Hearth" />
+ 			<property name="babyCount" formula="(select count(*) from character_np n where n.parent = allCharId)" type="java.lang.Integer" />
+		</joined-subclass>
+		<joined-subclass name="uk.ac.sussex.model.PlayerChar" table="character_player" >
+			<key column="allCharId" />
+			<property name="socialStatus" column = "socialStatus" type="java.lang.Integer" />
+ 			<many-to-one name="game" class="uk.ac.sussex.model.game.Game" />
+ 			<many-to-one name="player" column="user" class="uk.ac.sussex.model.Player" />
+ 			<many-to-one name="hearth" column="hearth" class="uk.ac.sussex.model.Hearth" />
+ 			<property name="fieldCount" formula="(select count(*) from field f where f.owner = allCharId)" type="java.lang.Integer"/>
+ 			<property name="babyCount" formula="(select count(*) from character_np n where n.parent = allCharId)" type="java.lang.Integer" />
+		</joined-subclass>
+	</class>
+</hibernate-mapping>

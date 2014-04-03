@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.HealthHazard" table="health_hazards">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		
+		<property name="name" column="name" type="java.lang.String"/>
+		<property name="dietLevel" column="diet_level" type="java.lang.String" />
+		<property name="hospital" column="hospital" type="java.lang.Integer" />
+		<property name="death" column="death" type="java.lang.Integer" />
+		<property name="medicineCost" column="medicine_cost" type="java.lang.Double" />
+	</class>
+	
+	<class name="uk.ac.sussex.model.CharHealthHazard" table="char_hazard_history">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<many-to-one name="character" column="char_id" class="uk.ac.sussex.model.AllChars" />
+		<many-to-one name="hazard" column="hazard_id" class="uk.ac.sussex.model.HealthHazard" />
+		<many-to-one name="season" column="season_id" class="uk.ac.sussex.model.SeasonDetail" />
+		<many-to-one name="bill" column="charge_id" class="uk.ac.sussex.model.Bill" />
+		<property name="outcome" column="outcome" type="java.lang.Integer" />
+	</class>
+	
+</hibernate-mapping>

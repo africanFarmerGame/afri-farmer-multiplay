@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.AllocationItem" table="diet_allocation_items">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<many-to-one name="allocation" column="allocation_id" class="uk.ac.sussex.model.Allocation"/>
+		<many-to-one name="asset" column="asset_id" class="uk.ac.sussex.model.Asset" />
+		<property name="amount" column="amount" type="java.lang.Integer" />
+		<many-to-one name="character" column="all_char_id" class="uk.ac.sussex.model.AllChars" />
+	</class>
+</hibernate-mapping>

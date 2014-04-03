@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.Location" table="location">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<property name="name" column="name" type="java.lang.String"/>
+		<joined-subclass name="uk.ac.sussex.model.Hearth" table="hearth" >
+			<key column="location_id" />
+			<property name="housenumber" column="housenumber" type="java.lang.Integer" />
+			<property name="cash" column="cash" type="java.lang.Double" />
+ 			<many-to-one name="game" column="game" class="uk.ac.sussex.model.game.Game" />
+ 			<set name="characters" lazy="false">
+            	 <key column="hearth"/>
+            	<one-to-many class="uk.ac.sussex.model.PlayerChar"/>
+       		</set>			
+		</joined-subclass>
+		<joined-subclass name="uk.ac.sussex.model.Field" table="field" >
+			<key column="location_id" />
+			<property name="quality" column="quality" type="java.lang.Integer" />
+ 			<many-to-one name="hearth" column="hearth" class="uk.ac.sussex.model.Hearth" />
+ 			<many-to-one name="owner" column="owner" class="uk.ac.sussex.model.PlayerChar" />
+ 			<many-to-one name="crop" column="crop" class="uk.ac.sussex.model.Asset" />
+ 			<property name="cropAge" column="crop_age" type="java.lang.Integer" />
+ 			<property name="cropHealth" column="crop_health" type="java.lang.Integer" />
+ 			<property name="cropPlanting" column="crop_planting" type="java.lang.Integer" />
+ 			<many-to-one name="fertiliser" column="fertiliser" class="uk.ac.sussex.model.Asset" />
+ 			<property name="cropWeeded" column="crop_weeded" type="java.lang.Integer" />
+		</joined-subclass>
+	</class>
+	<class name="uk.ac.sussex.model.FieldHistory" table="field_history">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<many-to-one name="field" column="field" class="uk.ac.sussex.model.Field" />
+		<property name="gameYear" column="game_year" type="java.lang.Integer" />
+		<many-to-one name="owner" column="owner" class="uk.ac.sussex.model.PlayerChar" />
+		<many-to-one name="hearth" column="hearth" class="uk.ac.sussex.model.Hearth" />
+ 		<many-to-one name="crop" column="crop" class="uk.ac.sussex.model.Asset" />
+ 		<property name="plantingTime" column="planting_time" type="java.lang.Integer" />
+ 		<property name="weeded" column="weeded" type="java.lang.Integer" />
+ 		<property name="fertilised" column="fertilised" type="java.lang.Integer" />
+ 		<property name="yield" column="yield" type="java.lang.Integer" />
+ 		<property name="fieldName" column="field_name" type="java.lang.String" />
+	</class>
+</hibernate-mapping>
