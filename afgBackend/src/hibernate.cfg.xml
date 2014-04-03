@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class">org.gjt.mm.mysql.Driver</property>
+		<property name="connection.url">jdbc:mysql://127.0.0.1:3306/afrodb2</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password"></property>
+ 
+ 
+	    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+ 
+    	<property name="current_session_context_class">thread</property>
+    	<property name="hibernate.show_sql">true</property>
+ 
+ 
+		<!-- mapping files -->
+		<mapping resource="uk/ac/sussex/model/User.hbm.xml" />
+		<mapping resource="uk/ac/sussex/utilities/LogEntry.hbm.xml" />
+		<mapping resource="uk/ac/sussex/utilities/ErrorLogEntry.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/game/Game.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/Location.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/Role.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/SeasonDetail.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/Asset.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/AssetOwner.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/MarketAsset.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/Ticker.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/TextMessage.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/Diet.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/DietItem.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/Characters.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/Allocation.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/AllocationItem.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/tasks/Task.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/CropHazard.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/Banking.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/Health.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/Notification.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/Proposal.hbm.xml" />
+ 		<mapping resource="uk/ac/sussex/model/grading/Grading.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.utilities.LogEntry" table="log">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="native"/>
+		</id>
+		<property name="message" column="message" type="java.lang.String"/>
+		<property name="generator" column="generator" type="java.lang.String" />
+		<property name="timestamp" column="timestamp" type="java.lang.Long" />
+ 
+	</class>
+</hibernate-mapping>

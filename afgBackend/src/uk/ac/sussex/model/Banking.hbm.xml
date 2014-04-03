@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.Bill" table="bills">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<discriminator column="bill_type"  type="java.lang.String" />
+		<property name="description" column="description" type="java.lang.String"/>
+		<property name="paid" column="paid" type="java.lang.Integer" />
+		<property name="earlyRate" column="early_rate" type="java.lang.Double" />
+		<property name="lateRate" column="late_rate" type="java.lang.Double" />
+		<many-to-one name="payee" column="payee" class="uk.ac.sussex.model.Hearth" />
+		<many-to-one name="season" column="season" class="uk.ac.sussex.model.SeasonDetail" />
+		<property name="duration" column="duration" type="java.lang.String" />
+		<many-to-one name="character" column="all_char_id" class="uk.ac.sussex.model.AllChars" />
+		
+		<subclass name="uk.ac.sussex.model.BillPenalty" discriminator-value="BILL_PENALTY" />
+		<subclass name="uk.ac.sussex.model.BillDeathDuty" discriminator-value="BILL_DEATHDUTY" />
+		<subclass name="uk.ac.sussex.model.BillHospital" discriminator-value="BILL_HOSPITAL" />
+		
+	</class>
+</hibernate-mapping>

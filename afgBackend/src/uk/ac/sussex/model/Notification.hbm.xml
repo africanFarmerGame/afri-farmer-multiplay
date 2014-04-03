@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.SeasonNotification" table="season_notification">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<many-to-one name="character" column="player_id" class="uk.ac.sussex.model.PlayerChar" />
+		<many-to-one name="previousSeason" column="previous_season_id" class="uk.ac.sussex.model.SeasonDetail" />
+		<many-to-one name="nextSeason" column="next_season_id" class="uk.ac.sussex.model.SeasonDetail" />
+		<property name="previousStage" column="previous_stage" type="java.lang.String" />
+		<property name="nextStage" column="next_stage" type="java.lang.String" />
+		<property name="notification" column="notification" type="java.lang.String" />
+	</class>
+</hibernate-mapping>

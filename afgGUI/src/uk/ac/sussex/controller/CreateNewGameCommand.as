@@ -1,0 +1,1 @@
+﻿package uk.ac.sussex.controller {	import org.puremvc.as3.multicore.interfaces.*;	import org.puremvc.as3.multicore.patterns.command.*;			public class CreateNewGameCommand extends SimpleCommand{		override public function execute ( note:INotification): void {			trace("Create a new game");		}	}	}

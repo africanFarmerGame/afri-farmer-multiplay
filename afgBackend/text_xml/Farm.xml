@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view>
+	<title>Farm</title>
+	<subview>
+		<name>default</name>
+		<info_title>Farm Summary</info_title>
+	</subview>
+</view>

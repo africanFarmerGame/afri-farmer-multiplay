@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.grading.GradingCriterion" table="grading">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<discriminator column="grading_type" type="string" />
+		<many-to-one name="hearth" column="hearth_id" class="uk.ac.sussex.model.Hearth"/>
+		<many-to-one name="pc" column="player_id" class="uk.ac.sussex.model.PlayerChar"/>
+		<property name="gameYear" column="game_year" type="java.lang.Integer" />
+		<property name="value" column="grade_value" type="java.lang.Double" />
+		
+		<subclass name="uk.ac.sussex.model.grading.AfriCashCriterion" discriminator-value="AFRICASH" >
+		</subclass>
+		<subclass name="uk.ac.sussex.model.grading.CoreAssetWorthCriterion" discriminator-value="COREASSETWORTH" >
+		</subclass>
+		<subclass name="uk.ac.sussex.model.grading.CoreDietACriterion" discriminator-value="COREDIETA" >
+		</subclass>
+		<subclass name="uk.ac.sussex.model.grading.CoreDietBCriterion" discriminator-value="COREDIETB" >
+		</subclass>
+		<subclass name="uk.ac.sussex.model.grading.CoreDietCCriterion" discriminator-value="COREDIETC" >
+		</subclass>
+		<subclass name="uk.ac.sussex.model.grading.CoreDietXCriterion" discriminator-value="COREDIETX" >
+		</subclass>
+		<subclass name="uk.ac.sussex.model.grading.CoreLivingHearthMembersCriterion" discriminator-value="CORETOTALHEARTH" >
+		</subclass>
+		
+	</class>
+</hibernate-mapping>

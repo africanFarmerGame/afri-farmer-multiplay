@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.tasks.Task" table="task">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<discriminator column="task_type" type="string" />
+ 		
+		<many-to-one name="season" column="season" class="uk.ac.sussex.model.SeasonDetail"/>
+		<many-to-one name="household" column="household" class="uk.ac.sussex.model.Hearth"/>
+		<many-to-one name="actor" column="actor" class="uk.ac.sussex.model.AllChars"/>
+		<property name="status" column="status" type="java.lang.Integer" />
+		<many-to-one name="asset" column="asset" class="uk.ac.sussex.model.Asset"/>
+		<property name="assetAmount" column="asset_amount" type="java.lang.Integer" />
+ 		<property name="notes" column="notes" type="java.lang.String" />
+ 		<property name="deleted" column="deleted" type="java.lang.Integer" />
+ 		<property name="taskNumber" column="task_number" type="java.lang.Integer" />
+ 		
+		<subclass name="uk.ac.sussex.model.tasks.TaskSowEarlyCrop" discriminator-value="TASK_SOW_EARLY_CROP">
+			<many-to-one name="location" column="location" class="uk.ac.sussex.model.Field" />
+ 		</subclass>
+		<subclass name="uk.ac.sussex.model.tasks.TaskSowLateCrop" discriminator-value="TASK_SOW_LATE_CROP">
+			<many-to-one name="location" column="location" class="uk.ac.sussex.model.Field" />
+ 		</subclass>
+ 		<subclass name="uk.ac.sussex.model.tasks.TaskHarvestCrop" discriminator-value="TASK_HARVEST_CROP">
+ 			<many-to-one name="location" column="location" class="uk.ac.sussex.model.Field" />
+ 		</subclass>
+ 		<subclass name="uk.ac.sussex.model.tasks.TaskBabysit" discriminator-value="TASK_BABYSIT">
+ 			<many-to-one name="location" column="location" class="uk.ac.sussex.model.Hearth" />
+ 		</subclass>
+ 		<subclass name="uk.ac.sussex.model.tasks.TaskWeedCrop" discriminator-value="TASK_WEED_CROP">
+ 			<many-to-one name="location" column="location" class="uk.ac.sussex.model.Field" />
+ 		</subclass>
+ 		<subclass name="uk.ac.sussex.model.tasks.TaskFarmElsewhere" discriminator-value="TASK_FARM_ELSEWHERE">
+ 			<many-to-one name="location" column="location" class="uk.ac.sussex.model.Hearth" />
+ 		</subclass>
+		<subclass name="uk.ac.sussex.model.tasks.TaskFertilise" discriminator-value="TASK_FERTILIZE">
+			<many-to-one name="location" column="location" class="uk.ac.sussex.model.Field" />
+		</subclass>
+		<subclass name="uk.ac.sussex.model.tasks.TaskHerbicide" discriminator-value="TASK_HERBICIDE">
+			<many-to-one name="location" column="location" class="uk.ac.sussex.model.Field" />
+		</subclass>
+		<subclass name="uk.ac.sussex.model.tasks.TaskSchool" discriminator-value="TASK_SCHOOL">
+			<many-to-one name="location" column="location" class="uk.ac.sussex.model.Hearth" />
+		</subclass>
+		<subclass name="uk.ac.sussex.model.tasks.TaskHousehold" discriminator-value="TASK_HOUSEHOLD">
+			<many-to-one name="location" column="location" class="uk.ac.sussex.model.Hearth" />
+		</subclass>
+		<subclass name="uk.ac.sussex.model.tasks.TaskSprayInsecticide" discriminator-value="TASK_SPRAY_INSECTICIDE">
+			<many-to-one name="location" column="location" class="uk.ac.sussex.model.Field" />
+		</subclass>
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,1 @@
+﻿package uk.ac.sussex.view.components {		import flash.display.MovieClip;			public class GenericTextField extends MovieClip {				public function GenericTextField() {					}		override public function set width(newWidth:Number):void {			this.inputTextField.x = 4;			this.inputTextField.width = newWidth-8;			this.border.width = newWidth;		}			}	}

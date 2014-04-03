@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.Allocation" table="diet_allocations">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<property name="name" column="name" type="java.lang.String"/>
+		<many-to-one name="household" column="household" class="uk.ac.sussex.model.Hearth" />
+		<property name="selected" column="selected" type="java.lang.Integer" />
+		<property name="deleted" column="deleted" type="java.lang.Integer" />
+		<property name="gameYear" column="game_year" type="java.lang.Integer" />
+		<property name="actual" column="actual" type="java.lang.Integer" />
+	</class>
+</hibernate-mapping>

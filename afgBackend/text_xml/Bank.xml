@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view>
+	<title>Bank</title>
+	<subview>
+		<name>default</name>
+		<info_title>Bank Services</info_title>
+	</subview>
+	<subview>
+		<name>pay</name>
+		<info_title>Pay</info_title>
+	</subview>
+</view>

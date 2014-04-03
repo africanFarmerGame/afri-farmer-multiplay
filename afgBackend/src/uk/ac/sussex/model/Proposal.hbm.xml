@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.Proposal" table="proposals">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<many-to-one name="proposer" column="proposer" class="uk.ac.sussex.model.PlayerChar" />
+		<many-to-one name="proposerHearth" column="proposing_hearth" class="uk.ac.sussex.model.Hearth" />
+		<many-to-one name="target" column="target" class="uk.ac.sussex.model.AllChars" />
+		<many-to-one name="currentHearth" column="current_hearth" class="uk.ac.sussex.model.Hearth" />
+		<many-to-one name="targetHearth" column="target_hearth" class="uk.ac.sussex.model.Hearth" />
+		<property name="status" column="status" type="java.lang.Integer" />
+		<property name="deleted" column="deleted" type="java.lang.Integer" />
+	</class>
+</hibernate-mapping>

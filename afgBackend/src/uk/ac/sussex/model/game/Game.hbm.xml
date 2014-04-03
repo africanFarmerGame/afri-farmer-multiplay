@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.game.Game" table="game">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<discriminator column="gametype"  type="java.lang.String" />
+		<property name="gameName" column="name" type="java.lang.String"/>
+		<property name="gamePassword" column="password" type="java.lang.String"/>
+ 		<property name="maxPlayers" column="maxPlayers" type="java.lang.Integer" />
+ 		<property name="active" column="active" type="java.lang.Integer" />
+ 		<property name="villageName" column="village" type = "java.lang.String" />
+ 		<property name="playerCount" formula="(select count(*) from character_player pc where pc.user is null and pc.game = name)" type="java.lang.Integer"/>
+ 		<many-to-one  name="currentSeasonDetail" column="currentSeasonDetail" class="uk.ac.sussex.model.SeasonDetail" />
+ 		<property name="gameYear" column="current_year" type="java.lang.Integer" />
+ 		<property name="householdSize" column="household_size" type="java.lang.Integer" />
+ 		
+ 		<subclass name="uk.ac.sussex.model.game.CoreGame" discriminator-value="CORE-GAME" />
+ 		<subclass name="uk.ac.sussex.model.game.AfriGame" discriminator-value="AFRI-GAME" />
+	</class>
+</hibernate-mapping>

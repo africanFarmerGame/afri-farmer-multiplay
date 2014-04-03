@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="uk.ac.sussex.model.TextMessage" table="textmessages">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<many-to-one name="sender" column="sender" class="uk.ac.sussex.model.PlayerChar"/>
+		<many-to-one name="receiver" column="receiver" class="uk.ac.sussex.model.PlayerChar"/>
+		<property name="message" column="message" type="java.lang.String" />
+ 		<property name="unread" column="unread" type="java.lang.Integer" />
+ 		<property name="deleted" column="deleted" type="java.lang.Integer" />
+ 		<property name="timestamp" column="timestamp" type="java.lang.Long" />
+	</class>
+	
+	<class name="uk.ac.sussex.model.CallHistory" table="call_history">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<many-to-one name="callFrom" column="call_from" class="uk.ac.sussex.model.PlayerChar"/>
+		<many-to-one name="callTo" column="call_to" class="uk.ac.sussex.model.PlayerChar"/>
+		<property name="started" column="started" type="java.lang.Long" />
+		<property name="answered" column="answered" type="java.lang.Long" />
+		<property name="finished" column="finished" type="java.lang.Long" />
+	</class>
+	
+	<class name="uk.ac.sussex.model.Message" table="messages">
+		<id name="id" column="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<many-to-one name="recipient" column="recipient" class="uk.ac.sussex.model.PlayerChar"/>
+		<property name="subject" column="subject" type="java.lang.String" />
+		<property name="body" column="body" type="java.lang.String" />
+ 		<property name="unread" column="unread" type="java.lang.Integer" />
+ 		<property name="deleted" column="deleted" type="java.lang.Integer" />
+ 		<property name="timestamp" column="timestamp" type="java.lang.Long" />
+	</class>
+	
+</hibernate-mapping>
